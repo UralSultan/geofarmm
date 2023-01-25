@@ -25,9 +25,18 @@ class Season(models.Model):
 
 
 class Field(models.Model):
+    # plot = models.CharField(max_length=50, null=True)
     name = models.PolygonField(srid=4326)
+    plot = models.CharField(max_length=50, null=True, verbose_name='Поле')
     objects = models.Manager()
-    farmer = models.ForeignKey(Farmer, null=True,  on_delete=models.CASCADE)
-    culture = models.ForeignKey(Culture, null=True, on_delete=models.CASCADE)
-    seasons = models.ForeignKey(Season, null=True, on_delete=models.CASCADE)
+    farmer = models.ForeignKey(Farmer, null=True,  on_delete=models.CASCADE, verbose_name='Фермер')
+    culture = models.ForeignKey(Culture, null=True, on_delete=models.CASCADE, verbose_name='Культура')
+    seasons = models.ForeignKey(Season, null=True, on_delete=models.CASCADE, verbose_name='Сезон')
+
+    def __str__(self):
+        return self.plot
+
+    class Meta:
+        verbose_name_plural = 'Поля'
+        verbose_name = 'Поле'
 
