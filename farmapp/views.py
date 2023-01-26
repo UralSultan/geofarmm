@@ -1,7 +1,5 @@
-from django.shortcuts import render
 from rest_framework import viewsets, filters
 from .serializer import FieldSerializers, Field
-from django_filters import rest_framework as rest_filters
 
 
 class FieldViewSet(viewsets.ModelViewSet):
