@@ -1,13 +1,13 @@
-from __future__ import unicode_literals
 from django.db import models
 from django.contrib.gis.db import models
-
+from django.contrib.auth.models import User
 
 class Farmer(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.name
+    class Meta:
+        verbose_name_plural = 'Фермеры'
+        verbose_name = 'Фермер'
 
 
 class Culture(models.Model):
@@ -16,12 +16,20 @@ class Culture(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Культуры'
+        verbose_name = 'Культура'
+
 
 class Season(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = 'Сезоны'
+        verbose_name = 'Сезон'
 
 
 class Field(models.Model):

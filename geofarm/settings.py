@@ -16,14 +16,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.gis',
+    'django_filters',
+    'rest_framework',
+    'corsheaders',
+
     'leaflet',
+
     'farmapp',
+    'farmer_reg',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -111,3 +127,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.6.2/lib/libgdal.dylib'
 
 GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.11.1/lib/libgeos_c.dylib'
+
+CORS_ORIGIN_ALLOW_ALL = True
