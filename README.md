@@ -21,9 +21,10 @@ postgresql 14 или выше
 apt-get install -y binutils libproj-dev gdal-bin python3-gdal
 apt-get install --yes libgdal-dev
 
-создать базу данных с раширениями 
-![Снимок экрана 2023-01-26 в 16.08.27.png](..%2F..%2F%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202023-01-26%20%D0%B2%2016.08.27.png)
+создать базу данных с раширениями
+
 postgis
+
 postgis_topology
 
 создать миграции
