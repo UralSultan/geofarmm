@@ -115,8 +115,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 """если запускать на локал сервере Джанго нужно раскомментировать 3 нижние строки"""
-# GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.6.2/lib/libgdal.dylib'
-#
-# GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.11.1/lib/libgeos_c.dylib'
+
+GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.6.2/lib/libgdal.dylib'
+
+GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.11.1/lib/libgeos_c.dylib'
 
 CORS_ORIGIN_ALLOW_ALL = True

@@ -6,7 +6,7 @@ class FieldViewSet(viewsets.ModelViewSet):
     serializer_class = FieldSerializers
     queryset = Field.objects.all()
     filter_backends = [filters.SearchFilter]
-    search_fields = ['farmer', 'coulture']
+    search_fields = ['farmer', 'culture']
 
     def get_queryset(self):
         user = self.request.user
