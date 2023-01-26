@@ -1,8 +1,17 @@
 from pathlib import Path
+import environ
+import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+    )
 
-SECRET_KEY = 'django-insecure-te+xc(ln7ivs^rhm9q*9(_=-r-6bw^y%=t&clpe4u3ekew5z7w'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = True
 
@@ -73,12 +82,12 @@ WSGI_APPLICATION = 'geofarm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'geofarm',
-        'USER': 'farmeruser',
-        'HOST': 'localhost',
-        'PASSWORD': 'farmeruser',
-        'PORT': '5432',
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 
@@ -124,8 +133,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.6.2/lib/libgdal.dylib'
-
-GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.11.1/lib/libgeos_c.dylib'
+# GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.6.2/lib/libgdal.dylib'
+#
+# GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.11.1/lib/libgeos_c.dylib'
 
 CORS_ORIGIN_ALLOW_ALL = True

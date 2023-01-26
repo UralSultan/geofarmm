@@ -1,0 +1,25 @@
+services:
+  postgis_data:
+    image: postgis/postgis:14-3.2
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+    env_file: .env
+
+
+  web:
+    build: .
+    ports:
+      - "8002:8002"
+    environment:
+      - DJANGO_SETTINGS_MODULE=geofarm.settings
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+    volumes:
+      - .:/usr/src/app
+      - ./media:/usr/src/app/media
+      - ./static:/usr/src/app/static
+    env_file: .env
+    depends_on:
+      - postgis_data
